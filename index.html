@@ -1,0 +1,53 @@
+<div>
+    <canvas id="myChart"></canvas>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+
+    var labels = Array()
+
+    var num = getRandomInt(1000000)
+    function getCollatz() {while (num != 1) {
+      if (num % 2 == 0) {
+        num /= 2
+      } else {
+        num = num * 3+ 1
+      }
+      labels.push(num)
+    }}
+
+      
+      getCollatz()
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 1)
+  
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'collatz graph',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: labels,
+      }]
+    };
+  
+    const config = {
+      type: 'line',
+      data: data,
+      options: {}
+    };
+  </script>
+<script>
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+  </script>
+       
